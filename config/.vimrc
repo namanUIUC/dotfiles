@@ -29,8 +29,10 @@ Plugin 'arcticicestudio/nord-vim'
 Plugin 'airblade/vim-gitgutter'
 "[9] To catch the word and change the surronding
 Plugin 'tpope/vim-surround'
-"[10] 
+"[10] Pep8 compatibility
 Plugin 'tell-k/vim-autopep8'
+"[11] Python folding
+Plugin 'tmhedberg/SimpylFold'
 
 call vundle#end()
 filetype plugin indent on
@@ -46,9 +48,9 @@ colorscheme nord
 "MAPPINGS
 map <F1> :bprev<CR>
 map <F2> :bnext<CR>
-map <F5> :source ~/.vimrc<CR>
-map <F4> :noh<CR>
 map <F3> :PluginInstall<CR>
+map <F4> :noh<CR>
+map <F5> :source ~/.vimrc<CR>
 
 let g:NERDTreeNodeDelimiter = "\u00a0"
 
@@ -167,10 +169,6 @@ set splitright
         " edit config files
                 nnoremap <leader>ez :tabnew ~/.zshrc<cr>
         
-        " syntastic pannel
-                nnoremap <leader>x :SyntasticCheck<cr>
-                nnoremap <leader>X :SyntasticReset<cr>
-        
         " retab shortcut
                 nnoremap <leader>r :retab<cr>
 
@@ -204,6 +202,9 @@ map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Runung the current python file
 map <leader>z :call VimuxRunCommand("clear; python3 " . bufname("%"))<CR>
+
+" comvert file according to pep8
+map <leader>x :call Autopep8()<cr>
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
